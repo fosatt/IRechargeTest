@@ -6,7 +6,6 @@ use Exception;
 use App\Exceptions\CustomException;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
-
 use App\Models\Customer;
 
 class CustomerService
@@ -29,7 +28,6 @@ class CustomerService
         $customer->last_name = $request['last_name'];
         $customer->email = $request['email'];
         $customer->phone = $request['phone'];
-
         $customer->save();
         return $customer;
     }

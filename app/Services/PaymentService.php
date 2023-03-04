@@ -24,11 +24,7 @@ class PaymentService
 
     public function chargeCard($request, $customer){
         $customer_response=$this->customer_service->findCustomer($customer);
-        $payment=PaymentService::createPayment($request, $customer);
-
-       
-
-                
+        $payment=PaymentService::createPayment($request, $customer);      
         $data=[
             "card_number" => strval($request['card_number']),
             "cvv" => strval($request['cvv']),
@@ -45,7 +41,7 @@ class PaymentService
             ],                
         ];
         $response = $this->http_caller->postRequest(PaymentService::URL, $data);
-        
+
         if ($response['data']['status'] === "successful" && $response['data']['amount'] === $payment->amount){
             $payment->update(['status'=>'completed']);
         }else {
@@ -57,7 +53,6 @@ class PaymentService
 
     public function createPayment($request, $customer_id){
         $payment=new Payment;
-        
         $payment->customer_id = $customer_id;
         $payment->amount = $request['amount'];
         $payment->reference_id = time().rand(11111111,99999999);
@@ -66,8 +61,7 @@ class PaymentService
         return $payment;
     }
 
-    public function findPayment($payment_id){
-     
+    public function findPayment($payment_id){ 
         $payment = Payment::find($payment_id);
         if (!$payment){
             throw new CustomException(false,'Customer Payment Details not found',Response::HTTP_NOT_FOUND);

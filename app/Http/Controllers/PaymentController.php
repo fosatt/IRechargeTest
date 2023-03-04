@@ -3,35 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\CustomException;
-use Flutterwave\Util\Currency;
-use Flutterwave\Flutterwave;
-
-\Flutterwave\Flutterwave::bootstrap();
-
 use App\Models\Payment;
 use App\Models\Customer;
-
-use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Http\Requests\PaymentRequest;
-
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use App\Services\HttpCaller;
-
-use App\Http\Resources\Payment\PaymentCollection;
 use App\Http\Resources\Payment\PaymentResource;
-
 use App\Services\PaymentService;
-use App\Services\CustomerService;
 
 class PaymentController extends Controller
 {
     public $http_caller;
     public $payment_service;
     
-
     /**
      * Create a new controller instance.
      *

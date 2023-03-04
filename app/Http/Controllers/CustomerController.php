@@ -6,13 +6,10 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Requests\CustomerRequest;
-
 use App\Http\Resources\Customer\CustomerCollection;
 use App\Http\Resources\Customer\CustomerResource;
-
 use Illuminate\Http\Request;
 use App\Services\CustomerService;
-
 use Symfony\Component\HttpFoundation\Response;
 
 class CustomerController extends Controller
@@ -70,7 +67,6 @@ class CustomerController extends Controller
      */
     public function show( $customer)
     {
-
         $customer = $this->customer_service->findCustomer($customer);
 
         return response([
